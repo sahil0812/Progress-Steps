@@ -1,0 +1,99 @@
+:root{
+    --line-border-fill:#3498db;
+    --line-border-empty:#e0e0e0;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.outside{
+    width:85vw;
+    height: 85vh;
+    margin: 7.5vh auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    text-align: center;
+    width: 40%;
+}
+
+.progress-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10%;
+    position: relative;
+}
+
+.progress-container::before{
+    content:'';
+    background-color: var(--line-border-empty);
+    position: absolute;/*The element is positioned relative to progress container*/
+    top: 50%;/*move element from top, such that it gets center align*/
+    left:0;
+    height:4px;/*but because of height, we can't see center align*/
+    transform: translateY(-50%);/*hence we translate it, such that it gets center align*/
+    width: 100%;
+    z-index: -1;/*behind the numbers*/
+}
+
+.progress{
+    background-color: var(--line-border-fill);
+    position: absolute;/*The element is positioned relative to progress container*/
+    top: 50%;
+    left:0;
+    height:4px;
+    transform: translateY(-50%);
+    width: 0%;
+    z-index: -1;/*behind the numbers*/
+    transition: .4s ease;
+}
+
+.circle{
+    background-color: #fff;
+    color: #999;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--line-border-empty);
+    transition: .4s ease;
+}
+.circle.active{
+    border-color: var(--line-border-fill);
+}
+
+.btn{
+    background-color: var(--line-border-fill);
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 8px 24px;
+    margin: 5px;
+    font-size: 15px;
+}
+/*when button is in active state, the scale() method increases or decreases the size of an element*/
+.btn:active{
+    transform: scale(0.98);
+}
+
+.btn:focus{
+    outline: 0;
+}
+
+.btn:disabled{
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;/*we can't click this button*/
+}
+
+@media (max-width:550px) {
+    .container{
+        width: 60%;
+    }
+}
